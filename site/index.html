@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sequilhos artesanais gourmet feitos com carinho. Red Velvet, Baunilha, Limão Siciliano e mais sabores únicos. Entrega em 24-48h. Peça pelo WhatsApp!">
+    <meta name="keywords" content="sequilhos gourmet, sequilhos artesanais, bolachas artesanais, red velvet, baunilha, limão siciliano, doces artesanais, entrega">
+    <meta name="author" content="Em Sequilhos Gourmet">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Em Sequilhos Gourmet - Delicadeza Artesanal">
+    <meta property="og:description" content="Sequilhos artesanais gourmet com sabores únicos. Feitos com amor e ingredientes premium.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://www.emsequilhosgourmet.com.br">
+    <title>Em Sequilhos Gourmet - Sequilhos Artesanais | Red Velvet, Baunilha e Mais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        rose: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                        },
+                        brand: {
+                            light: '#F8E8EE',
+                            DEFAULT: '#E5B8C8',
+                            dark: '#A45D7D',
+                            accent: '#7D4C5E'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { 
+            scroll-behavior: smooth;
+            scroll-padding-top: 120px;
+        }
+        .bg-soft-rose { background-color: #FDF4F7; }
+        .dark .bg-soft-rose { background-color: #1a1617; }
+        
+        .product-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Custom scrollbar for aesthetic */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { 
+            background: #E5B8C8; 
+            border-radius: 10px;
+        }
+
+        .floating-wa {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Botão WhatsApp Flutuante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse-wa 2s infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+        }
+        @keyframes pulse-wa {
+            0% { transform: scale(1); box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4); }
+        }
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-content {
+            margin: auto;
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            animation: zoomIn 0.3s;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .lightbox-close:hover { color: #E5B8C8; }
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+            transition: 0.3s;
+            z-index: 10000;
+        }
+        .lightbox-prev:hover, .lightbox-next:hover {
+            color: #E5B8C8;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.7); }
+            to { transform: scale(1); }
+        }
+        .gallery-img { cursor: pointer; }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #A45D7D;
+            color: white;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(164, 93, 125, 0.3);
+        }
+        .back-to-top.show { display: flex; }
+        .back-to-top:hover {
+            background: #7D4C5E;
+            transform: translateY(-5px);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #A45D7D, #E5B8C8);
+            z-index: 9999;
+            transition: width 0.1s;
+        }
+
+        /* Active Nav Link */
+        .nav-link.active {
+            color: #A45D7D !important;
+            position: relative;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #A45D7D;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #FDF4F7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        .loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #E5B8C8;
+            border-top: 5px solid #A45D7D;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Microinteractions */
+        .btn-hover {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-hover::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn-hover:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid rgba(164, 93, 125, 0.1);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-answer.active {
+            max-height: 500px;
+        }
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        .faq-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        /* Stats Counter Animation */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .stat-number {
+            animation: countUp 0.8s ease;
+        }
+    </style>
+</head>
+<body class="bg-rose-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 transition-colors duration-300">
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar" class="progress-bar"></div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-lg border-b border-rose-100 dark:border-zinc-800" role="navigation" aria-label="Navegação principal">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#inicio" class="flex items-center space-x-3 hover:opacity-80 transition" aria-label="Ir para o início">
+                <img src="logo.png" alt="Logotipo Em Sequilhos Gourmet" class="h-20 w-auto" width="80" height="80">
+                <h1 class="text-3xl font-serif font-bold text-brand-dark dark:text-brand italic tracking-tight">Sequilhos Gourmet</h1>
+            </a>
+            
+            <div class="flex items-center space-x-6">
+                <div class="hidden lg:flex space-x-8 text-xs font-medium uppercase tracking-widest">
+                    <a href="#inicio" class="nav-link hover:text-brand-dark dark:hover:text-brand transition">Início</a>
+                    <a href="#sabores" class="nav-link hover:text-brand-dark dark:hover:text-brand transition">Sabores</a>
+                    <a href="#sobre" class="nav-link hover:text-brand-dark dark:hover:text-brand transition">Sobre</a>
+                    <a href="#como-pedir" class="nav-link hover:text-brand-dark dark:hover:text-brand transition">Como Pedir</a>
+                    <a href="#depoimentos" class="nav-link hover:text-brand-dark dark:hover:text-brand transition">Avaliações</a>
+                    <a href="#faq" class="nav-link hover:text-brand-dark dark:hover:text-brand transition">FAQ</a>
+                    <a href="#precos" class="nav-link hover:text-brand-dark dark:hover:text-brand transition">Valores</a>
+                    <a href="#contato" class="nav-link hover:text-brand-dark dark:hover:text-brand transition">Contato</a>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button onclick="toggleTheme()" class="p-2 rounded-full bg-rose-100 dark:bg-zinc-800 text-brand-dark dark:text-brand" aria-label="Alternar tema claro/escuro" role="button">
+                    <svg id="theme-icon-dark" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg id="theme-icon-light" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="inicio" class="relative min-h-[80vh] flex items-center justify-center pt-24 pb-12 px-6" role="banner">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-left">
+                <span class="inline-block px-4 py-1 rounded-full bg-brand/20 text-brand-dark dark:text-brand text-xs font-semibold uppercase tracking-widest mb-6">Artesanal & Delicado</span>
+                <h2 class="text-6xl md:text-7xl font-serif mb-6 leading-tight dark:text-white">Um abraço em forma de <span class="italic text-brand-dark dark:text-brand">Sequilho.</span></h2>
+                <p class="text-lg text-zinc-600 dark:text-zinc-400 mb-8 font-light max-w-md">Feitos com carinho e cuidado, nossas bolachas são a expressão máxima da delicadeza artesanal.</p>
+                <div class="flex space-x-4">
+                    <a href="#sabores" class="bg-brand-dark text-white px-8 py-4 rounded-full font-medium hover:bg-brand-accent transition shadow-lg shadow-brand-dark/20">Explorar Sabores</a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -inset-4 bg-brand/20 blur-2xl rounded-full"></div>
+                <img src="sequilhos-gourmet-embalagem-premium.jpeg" alt="Sequilhos artesanais gourmet em embalagem premium" class="relative rounded-3xl shadow-2xl w-full h-[500px] object-cover rotate-2" loading="eager" width="500" height="500">
+            </div>
+        </div>
+    </header>
+
+    <!-- Sessão para cada Produto -->
+    <section id="sabores" class="py-24 space-y-32" aria-labelledby="sabores-titulo">
+        <div class="text-center mb-12">
+            <h2 id="sabores-titulo" class="text-5xl font-serif italic text-brand-dark dark:text-brand">Nossa Coleção de Sabores</h2>
+            <p class="text-zinc-500 mt-4 uppercase tracking-widest text-xs">Cada mordida uma nova experiência</p>
+        </div>
+
+        <!-- Red Velvet -->
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <h3 class="text-4xl font-serif mb-4 text-brand-dark dark:text-brand">Red Velvet com Leite Ninho</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg mb-6">
+                    A cor vibrante do red velvet encontra a suavidade aveludada do recheio de Leite Ninho. Um sequilho sofisticado, perfeito para presentear ou para aquele café da tarde especial.
+                </p>
+                <div class="flex items-center text-brand-dark font-medium">
+                    <span class="w-8 h-[1px] bg-brand-dark mr-4"></span> Sabor Premium
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <img src="sequilhos-red-velvet-leite-ninho.jpeg" class="rounded-[40px] shadow-xl h-[400px] w-full object-cover product-card hover:scale-105" alt="Sequilhos Red Velvet com Leite Ninho" loading="lazy" width="400" height="400">
+            </div>
+        </div>
+
+        <!-- Baunilha -->
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <img src="sequilhos-baunilha-classica.jpeg" class="rounded-[40px] shadow-xl h-[400px] w-full object-cover product-card hover:scale-105" alt="Sequilhos de Baunilha Clássica artesanais" loading="lazy" width="400" height="400">
+            </div>
+            <div>
+                <h3 class="text-4xl font-serif mb-4 text-brand-dark dark:text-brand">Baunilha Clássica</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg mb-6">
+                    O clássico que nunca falha. Com o aroma aconchegante da baunilha pura, esse sequilho desmancha na boca com uma doçura equilibrada e reconfortante.
+                </p>
+                <div class="flex items-center text-brand-dark font-medium">
+                    <span class="w-8 h-[1px] bg-brand-dark mr-4"></span> O Favorito
+                </div>
+            </div>
+        </div>
+
+        <!-- Limão Siciliano -->
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <h3 class="text-4xl font-serif mb-4 text-brand-dark dark:text-brand">Limão Siciliano</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg mb-6">
+                    Refrescante e levemente cítrico. Utilizamos raspas frescas de limão siciliano para criar um equilíbrio perfeito entre o doce e a acidez.
+                </p>
+                <div class="flex items-center text-brand-dark font-medium">
+                    <span class="w-8 h-[1px] bg-brand-dark mr-4"></span> Cítrico & Refrescante
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <img src="sequilhos-limao-siciliano.jpeg" class="rounded-[40px] shadow-xl h-[400px] w-full object-cover product-card hover:scale-105" alt="Sequilhos de Limão Siciliano refrescantes" loading="lazy" width="400" height="400">
+            </div>
+        </div>
+
+        <!-- Chocolate com Coco -->
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <img src="sequilhos-chocolate-branco-coco.jpeg" class="rounded-[40px] shadow-xl h-[400px] w-full object-cover product-card hover:scale-105" alt="Sequilhos de Chocolate Branco com Coco artesanais" loading="lazy" width="400" height="400">
+            </div>
+            <div>
+                <h3 class="text-4xl font-serif mb-4 text-brand-dark dark:text-brand">Chocolate Branco com Coco</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg mb-6">
+                    Uma combinação tropical e luxuosa. O chocolate branco cremoso abraça os flocos de coco em uma textura incrível.
+                </p>
+                <div class="flex items-center text-brand-dark font-medium">
+                    <span class="w-8 h-[1px] bg-brand-dark mr-4"></span> Explosão de Sabor
+                </div>
+            </div>
+        </div>
+
+        <!-- Amendoim -->
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <h3 class="text-4xl font-serif mb-4 text-brand-dark dark:text-brand">Amendoim Selecionado</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg mb-6">
+                    Para quem ama um toque crocante e rústico. O sabor intenso do amendoim torrado traz personalidade e uma textura inesquecível.
+                </p>
+                <div class="flex items-center text-brand-dark font-medium">
+                    <span class="w-8 h-[1px] bg-brand-dark mr-4"></span> Rústico & Caseiro
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <img src="sequilhos-amendoim-crocante.jpeg" class="rounded-[40px] shadow-xl h-[400px] w-full object-cover product-card hover:scale-105" alt="Sequilhos de Amendoim crocantes" loading="lazy" width="400" height="400">
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificações e Selos -->
+    <section class="py-12 bg-white dark:bg-zinc-900 border-y border-zinc-100 dark:border-zinc-800" aria-label="Certificações e selos de qualidade">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 mx-auto mb-2 flex items-center justify-center bg-brand/10 rounded-full">
+                        <svg class="w-10 h-10 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400">100% Artesanal</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 mx-auto mb-2 flex items-center justify-center bg-brand/10 rounded-full">
+                        <svg class="w-10 h-10 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400">Receita Aprovada</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 mx-auto mb-2 flex items-center justify-center bg-brand/10 rounded-full">
+                        <svg class="w-10 h-10 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400">Feito com Amor</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 mx-auto mb-2 flex items-center justify-center bg-brand/10 rounded-full">
+                        <svg class="w-10 h-10 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400">5 Estrelas</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 mx-auto mb-2 flex items-center justify-center bg-brand/10 rounded-full">
+                        <svg class="w-10 h-10 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z"/>
+                        </svg>
+                    </div>
+                    <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400">Produção Diária</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contador de Estatísticas -->
+    <section class="py-16 bg-brand-dark text-white" aria-label="Estatísticas e números" role="region">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="fade-in">
+                    <div class="text-5xl font-serif font-bold stat-number mb-2">500+</div>
+                    <p class="text-brand-light uppercase tracking-widest text-xs">Clientes Felizes</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-5xl font-serif font-bold stat-number mb-2">15</div>
+                    <p class="text-brand-light uppercase tracking-widest text-xs">Sabores Únicos</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-5xl font-serif font-bold stat-number mb-2">100%</div>
+                    <p class="text-brand-light uppercase tracking-widest text-xs">Artesanal</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-5xl font-serif font-bold stat-number mb-2">5★</div>
+                    <p class="text-brand-light uppercase tracking-widest text-xs">Avaliação</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section id="sobre" class="py-24 fade-in" aria-labelledby="sobre-titulo">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="inline-block px-4 py-1 rounded-full bg-brand/20 text-brand-dark dark:text-brand text-xs font-semibold uppercase tracking-widest mb-6">Nossa História</span>
+                    <h2 id="sobre-titulo" class="text-5xl font-serif italic text-brand-dark dark:text-brand mb-6">Feito com Amor e Tradição</h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg mb-4">
+                        Cada sequilho que produzimos carrega anos de tradição familiar e muito carinho. Nossa receita artesanal é preparada com ingredientes selecionados e técnicas que garantem aquela textura perfeita que derrete na boca.
+                    </p>
+                    <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg mb-6">
+                        Acreditamos que a verdadeira doçura está nos detalhes e no cuidado com cada etapa da produção. Do preparo da massa até a embalagem final, tudo é feito pensando em proporcionar momentos especiais para você e sua família.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 text-brand-dark flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold mb-1">Receita Tradicional</h4>
+                                <p class="text-sm text-zinc-500">Passada de geração em geração</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 text-brand-dark flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold mb-1">Ingredientes Premium</h4>
+                                <p class="text-sm text-zinc-500">Selecionados com cuidado</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 text-brand-dark flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold mb-1">Produção Diária</h4>
+                                <p class="text-sm text-zinc-500">Sempre fresquinhos</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 text-brand-dark flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold mb-1">Embalagem Especial</h4>
+                                <p class="text-sm text-zinc-500">Perfeito para presentear</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-brand/10 blur-3xl rounded-full"></div>
+                    <img src="sequilhos-gourmet-embalagem-premium.jpeg" alt="Sobre Nós" class="relative rounded-3xl shadow-2xl w-full h-[500px] object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Galeria -->
+    <section class="py-24 bg-brand/5 dark:bg-zinc-900/50">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-serif italic text-brand-dark dark:text-brand mb-4">Nossa Galeria</h2>
+            <p class="text-zinc-500 uppercase tracking-widest text-xs">Mais fotos dos nossos sequilhos artesanais</p>
+        </div>
+
+        <!-- Galeria Grid Moderno -->
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-artesanais-gourmet-01.jpeg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos artesanais gourmet" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-artesanais-gourmet-02.jpeg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos gourmet premium" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-artesanais-gourmet-03.jpeg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos caseiros artesanais" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-artesanais-gourmet-04.jpeg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos decorados premium" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-variados-artesanais.jpg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos artesanais variados" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-gourmet-premium.jpg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos gourmet artesanais" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-recheados-premium.jpg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos recheados premium" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="embalagem-sequilhos-gourmet.jpg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Embalagem de sequilhos gourmet" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-coloridos-artesanais.jpg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos coloridos artesanais" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-decorados-especiais.jpg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos decorados especiais" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="mesa-decorada-sequilhos.jpg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Mesa decorada com sequilhos" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="caixa-presente-sequilhos.jpg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Caixa de presente com sequilhos" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="variedade-sequilhos-artesanais.jpg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Variedade de sequilhos artesanais" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-frescos-producao-diaria.jpeg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sequilhos frescos produção diária" loading="lazy" width="300" height="300">
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-zinc-100 dark:bg-zinc-800">
+                    <img src="sequilhos-gourmet-embalagem-premium.jpeg" class="gallery-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Embalagem premium sequilhos artesanais" loading="lazy" width="300" height="300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section id="precos" class="py-24 bg-brand/10 dark:bg-zinc-900" aria-labelledby="precos-titulo">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-serif text-brand-dark dark:text-brand mb-4 italic">Investimento em Felicidade</h2>
+                <div class="w-24 h-1 bg-brand-dark mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white dark:bg-zinc-800 p-10 rounded-3xl border border-brand/20 shadow-sm text-center">
+                    <h4 class="text-xl font-medium mb-2 uppercase tracking-widest text-zinc-500">Pacote Tradicional</h4>
+                    <div class="text-5xl font-serif font-bold text-brand-dark dark:text-brand my-6">R$ 9,00</div>
+                    <p class="text-lg mb-6">Porção de 100g</p>
+                    <p class="text-sm text-zinc-500 italic">Perfeito para o dia a dia e para compartilhar momentos.</p>
+                </div>
+
+                <div class="bg-white dark:bg-zinc-800 p-10 rounded-3xl border border-brand/20 shadow-sm">
+                    <h4 class="text-xl font-medium mb-6 uppercase tracking-widest text-zinc-500 text-center border-b pb-4 border-rose-50 dark:border-zinc-700">Por Unidade</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-lg"><span>3x3 cm</span> <span class="font-bold text-brand-dark">R$ 2,00</span></div>
+                        <div class="flex justify-between items-center text-lg"><span>4x4 cm</span> <span class="font-bold text-brand-dark">R$ 2,30</span></div>
+                        <div class="flex justify-between items-center text-lg"><span>5x5 cm</span> <span class="font-bold text-brand-dark">R$ 2,60</span></div>
+                        <div class="flex justify-between items-center text-lg"><span>6x6 cm</span> <span class="font-bold text-brand-dark">R$ 3,00</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Fazer Pedidos -->
+    <section id="como-pedir" class="py-24 bg-white dark:bg-zinc-900 fade-in" aria-labelledby="como-pedir-titulo">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 id="como-pedir-titulo" class="text-5xl font-serif italic text-brand-dark dark:text-brand mb-4">Como Fazer Seu Pedido</h2>
+                <p class="text-zinc-500 uppercase tracking-widest text-xs">Processo simples e rápido</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-brand-dark">1</span>
+                    </div>
+                    <h3 class="text-xl font-serif mb-2 text-brand-dark dark:text-brand">Escolha</h3>
+                    <p class="text-zinc-600 dark:text-zinc-400 text-sm">Selecione seus sabores favoritos da nossa coleção</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-brand-dark">2</span>
+                    </div>
+                    <h3 class="text-xl font-serif mb-2 text-brand-dark dark:text-brand">Contato</h3>
+                    <p class="text-zinc-600 dark:text-zinc-400 text-sm">Entre em contato pelo WhatsApp com sua lista</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-brand-dark">3</span>
+                    </div>
+                    <h3 class="text-xl font-serif mb-2 text-brand-dark dark:text-brand">Confirmação</h3>
+                    <p class="text-zinc-600 dark:text-zinc-400 text-sm">Confirmamos o pedido e prazo de entrega</p>
+                </div>
+                <div class="text-center fade-in">
+                    <div class="w-16 h-16 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-brand-dark">4</span>
+                    </div>
+                    <h3 class="text-xl font-serif mb-2 text-brand-dark dark:text-brand">Receba</h3>
+                    <p class="text-zinc-600 dark:text-zinc-400 text-sm">Seus sequilhos fresquinhos na sua porta</p>
+                </div>
+            </div>
+            <div class="mt-16 bg-brand/10 dark:bg-zinc-800 rounded-3xl p-8">
+                <h3 class="text-2xl font-serif text-center mb-6 text-brand-dark dark:text-brand">Informações de Entrega</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <svg class="w-12 h-12 mx-auto mb-3 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/>
+                        </svg>
+                        <h4 class="font-semibold mb-2">Prazo de Entrega</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">Pode levar alguns dias - encomende com antecedência</p>
+                    </div>
+                    <div class="text-center">
+                        <svg class="w-12 h-12 mx-auto mb-3 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/>
+                        </svg>
+                        <h4 class="font-semibold mb-2">Cobertura Local</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">Atendemos toda a região</p>
+                    </div>
+                    <div class="text-center">
+                        <svg class="w-12 h-12 mx-auto mb-3 text-brand-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"/>
+                        </svg>
+                        <h4 class="font-semibold mb-2">Pedido Mínimo</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">A partir de R$ 20,00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos" class="py-24 bg-brand/5 dark:bg-zinc-800 fade-in">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-serif italic text-brand-dark dark:text-brand mb-4">O Que Dizem Nossos Clientes</h2>
+                <p class="text-zinc-500 uppercase tracking-widest text-xs">Avaliações reais de quem já provou</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-lg fade-in">
+                    <div class="flex mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-zinc-600 dark:text-zinc-300 mb-4 italic">"Os sequilhos mais deliciosos que já provei! A textura é perfeita e o sabor de red velvet é simplesmente maravilhoso. Virou meu pedido fixo semanal!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-brand/20 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-brand-dark">MC</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Maria Clara</p>
+                            <p class="text-xs text-zinc-500">Cliente desde 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-lg fade-in">
+                    <div class="flex mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-zinc-600 dark:text-zinc-300 mb-4 italic">"Encomendei para um evento da empresa e todos adoraram! O atendimento foi impecável e a entrega super pontual. Recomendo muito!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-brand/20 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-brand-dark">JS</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">João Silva</p>
+                            <p class="text-xs text-zinc-500">Pedido corporativo</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-lg fade-in">
+                    <div class="flex mb-4">
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-zinc-600 dark:text-zinc-300 mb-4 italic">"Produto de altíssima qualidade! Dá para sentir o carinho e dedicação em cada detalhe. Presenteei minha mãe e ela ficou encantada com a embalagem!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-brand/20 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-brand-dark">AP</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Ana Paula</p>
+                            <p class="text-xs text-zinc-500">Cliente fiel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-white dark:bg-zinc-900 fade-in" aria-labelledby="faq-titulo" role="region">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 id="faq-titulo" class="text-5xl font-serif italic text-brand-dark dark:text-brand mb-4">Perguntas Frequentes</h2>
+                <p class="text-zinc-500 uppercase tracking-widest text-xs">Tire suas dúvidas</p>
+            </div>
+            <div class="space-y-4">
+                <div class="faq-item py-4">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left">
+                        <span class="font-semibold text-lg text-brand-dark dark:text-brand">Qual o prazo de validade dos sequilhos?</span>
+                        <svg class="faq-icon w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4 text-zinc-600 dark:text-zinc-400">
+                        <p>Nossos sequilhos têm validade de 30 dias quando armazenados em local fresco e seco, em embalagem bem fechada. Recomendamos consumir frescos para melhor experiência!</p>
+                    </div>
+                </div>
+                <div class="faq-item py-4">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left">
+                        <span class="font-semibold text-lg text-brand-dark dark:text-brand">Qual o pedido mínimo?</span>
+                        <svg class="faq-icon w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4 text-zinc-600 dark:text-zinc-400">
+                        <p>O pedido mínimo é de R$ 20,00. Você pode escolher diferentes sabores para compor seu pedido!</p>
+                    </div>
+                </div>
+                <div class="faq-item py-4">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left">
+                        <span class="font-semibold text-lg text-brand-dark dark:text-brand">Vocês fazem encomendas personalizadas para festas?</span>
+                        <svg class="faq-icon w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4 text-zinc-600 dark:text-zinc-400">
+                        <p>Sim! Fazemos encomendas personalizadas para casamentos, aniversários, eventos corporativos e outras ocasiões especiais. Entre em contato para orçamento!</p>
+                    </div>
+                </div>
+                <div class="faq-item py-4">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left">
+                        <span class="font-semibold text-lg text-brand-dark dark:text-brand">Os sequilhos contêm glúten?</span>
+                        <svg class="faq-icon w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4 text-zinc-600 dark:text-zinc-400">
+                        <p>Sim, nossa receita tradicional contém glúten. Informe se tem alguma restrição alimentar para que possamos verificar opções especiais!</p>
+                    </div>
+                </div>
+                <div class="faq-item py-4">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left">
+                        <span class="font-semibold text-lg text-brand-dark dark:text-brand">Como funciona a entrega?</span>
+                        <svg class="faq-icon w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4 text-zinc-600 dark:text-zinc-400">
+                        <p>Realizamos entregas na região em até 48h após confirmação do pedido. O valor do frete varia conforme a localização. Também oferecemos opção de retirada no local!</p>
+                    </div>
+                </div>
+                <div class="faq-item py-4">
+                    <button onclick="toggleFAQ(this)" class="w-full flex justify-between items-center text-left">
+                        <span class="font-semibold text-lg text-brand-dark dark:text-brand">Posso escolher mais de um sabor no mesmo pedido?</span>
+                        <svg class="faq-icon w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-4 text-zinc-600 dark:text-zinc-400">
+                        <p>Claro! Você pode montar seu pedido com quantos sabores quiser. É uma ótima opção para experimentar nossa variedade ou presentear alguém especial!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section class="py-24 bg-white dark:bg-zinc-900 fade-in" aria-labelledby="instagram-titulo">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 id="instagram-titulo" class="text-5xl font-serif italic text-brand-dark dark:text-brand mb-4">Siga no Instagram</h2>
+                <p class="text-zinc-500 mb-6 uppercase tracking-widest text-xs">@em.sequilhosgourmet</p>
+                <a href="https://instagram.com/em.sequilhosgourmet" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-medium hover:shadow-lg transition" aria-label="Seguir Em Sequilhos Gourmet no Instagram">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    <span>Seguir no Instagram</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square bg-zinc-100 dark:bg-zinc-800 rounded-2xl overflow-hidden">
+                    <img src="sequilhos-red-velvet-leite-ninho.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Post do Instagram mostrando sequilhos Red Velvet" loading="lazy" width="300" height="300">
+                </div>
+                <div class="aspect-square bg-zinc-100 dark:bg-zinc-800 rounded-2xl overflow-hidden">
+                    <img src="sequilhos-baunilha-classica.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Post do Instagram mostrando sequilhos de Baunilha" loading="lazy" width="300" height="300">
+                </div>
+                <div class="aspect-square bg-zinc-100 dark:bg-zinc-800 rounded-2xl overflow-hidden">
+                    <img src="sequilhos-limao-siciliano.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Post do Instagram mostrando sequilhos de Limão" loading="lazy" width="300" height="300">
+                </div>
+                <div class="aspect-square bg-zinc-100 dark:bg-zinc-800 rounded-2xl overflow-hidden">
+                    <img src="sequilhos-chocolate-branco-coco.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Post do Instagram mostrando sequilhos variados" loading="lazy" width="300" height="300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="py-32 relative overflow-hidden fade-in" aria-labelledby="contato-titulo" role="region">
+        <div class="absolute inset-0 bg-brand-dark/5 dark:bg-brand-dark/10"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 id="contato-titulo" class="text-5xl font-serif mb-8 text-brand-dark dark:text-white">Deseja fazer uma encomenda?</h2>
+            <p class="text-xl text-zinc-600 dark:text-zinc-400 mb-12 font-light">
+                Cada pedido é preparado com exclusividade para você. Escolha seus sabores favoritos e entre em contato!
+            </p>
+            
+            <a href="https://wa.me/5554999044793" target="_blank" class="btn-hover floating-wa inline-flex items-center space-x-4 bg-brand-dark text-white px-12 py-6 rounded-full font-bold text-2xl hover:bg-brand-accent transition-all shadow-2xl shadow-brand-dark/40">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.891 11.893-11.891 3.181 0 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.481 8.417 0 6.556-5.332 11.89-11.893 11.89-2.015 0-3.991-.511-5.741-1.483l-6.252 1.688zm6.309-3.792l.35.207c1.378.818 2.977 1.251 4.621 1.251 4.903 0 8.892-3.991 8.892-8.896 0-2.378-.926-4.613-2.607-6.296-1.682-1.683-3.918-2.61-6.293-2.61-4.904 0-8.894 3.991-8.894 8.897 0 1.748.51 3.447 1.474 4.918l.228.347-1.036 3.784 3.865-1.042zm11.233-5.264c-.3-.149-1.774-.875-2.048-.976-.275-.1-.475-.149-.675.149-.2.3-.775.976-.95 1.175-.175.2-.35.224-.65.075-.3-.149-1.265-.467-2.41-1.488-.89-.794-1.49-1.775-1.665-2.075-.175-.3-.019-.461.13-.61.135-.133.3-.349.45-.523.15-.174.2-.299.3-.499.1-.2.05-.375-.025-.524-.075-.15-.675-1.625-.925-2.224-.244-.594-.492-.513-.675-.522-.175-.009-.375-.01-.575-.01s-.525.075-.8.375c-.275.3-1.05 1.024-1.05 2.499 0 1.475 1.075 2.899 1.225 3.099.15.2 2.115 3.227 5.125 4.525.715.309 1.275.493 1.71.632.718.228 1.372.196 1.89.119.578-.085 1.774-.725 2.024-1.424.25-.699.25-1.299.175-1.424-.075-.125-.275-.199-.575-.349z"/></svg>
+                <span>Chamar no WhatsApp</span>
+            </a>
+            
+            <div class="mt-20">
+                <p class="text-sm font-medium uppercase tracking-[0.2em] text-brand-dark mb-4">Siga nossa doçura no Instagram</p>
+                <a href="https://instagram.com/em.sequilhosgourmet" target="_blank" class="text-3xl font-serif italic text-zinc-900 dark:text-white border-b border-brand-dark/30 pb-1">@em.sequilhosgourmet</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/5554999044793" target="_blank" class="whatsapp-float" aria-label="Entre em contato pelo WhatsApp">
+        <svg fill="currentColor" viewBox="0 0 24 24" width="35" height="35">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-prev" onclick="event.stopPropagation(); navigateLightbox(-1)">&#10094;</span>
+        <span class="lightbox-next" onclick="event.stopPropagation(); navigateLightbox(1)">&#10095;</span>
+        <img id="lightbox-img" class="lightbox-content" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white dark:bg-zinc-900 border-t border-rose-50 dark:border-zinc-800 text-center" role="contentinfo">
+        <div itemscope itemtype="https://schema.org/LocalBusiness">
+            <meta itemprop="name" content="Em Sequilhos Gourmet">
+            <meta itemprop="description" content="Sequilhos artesanais gourmet">
+            <meta itemprop="telephone" content="+5554999044793">
+            <meta itemprop="url" content="https://www.emsequilhosgourmet.com.br">
+            <p class="text-zinc-400 text-xs uppercase tracking-widest">&copy; 2025 <span itemprop="name">Em Sequilhos Gourmet</span>. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const darkIcon = document.getElementById('theme-icon-dark');
+            const lightIcon = document.getElementById('theme-icon-light');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Check for saved theme
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('theme-icon-dark').classList.remove('hidden');
+            document.getElementById('theme-icon-light').classList.add('hidden');
+        }
+
+        // Lightbox functions
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        function openLightbox(imgSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightbox.classList.add('active');
+            lightboxImg.src = imgSrc;
+            document.body.style.overflow = 'hidden';
+            
+            // Find current image index
+            currentImageIndex = galleryImages.findIndex(img => img.src.includes(imgSrc.split('/').pop()));
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function navigateLightbox(direction) {
+            currentImageIndex += direction;
+            
+            // Loop around
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            
+            document.getElementById('lightbox-img').src = galleryImages[currentImageIndex].src;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // Add click handlers to gallery images
+        document.addEventListener('DOMContentLoaded', function() {
+            galleryImages = Array.from(document.querySelectorAll('.gallery-img'));
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    openLightbox(this.src);
+                });
+            });
+
+            // Hide loading overlay
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 500);
+
+            // Scroll animations
+            observeElements();
+
+            // Back to top button
+            setupBackToTop();
+
+            // Progress bar
+            updateProgressBar();
+
+            // Active nav link
+            updateActiveNavLink();
+        });
+
+        // Scroll Animations
+        function observeElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        }
+
+        // Back to Top
+        function setupBackToTop() {
+            const btn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
+            });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Progress Bar
+        function updateProgressBar() {
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById('progress-bar').style.width = scrolled + '%';
+            });
+        }
+
+        // Active Nav Link
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section[id]');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+            const allAnswers = document.querySelectorAll('.faq-answer');
+            const allIcons = document.querySelectorAll('.faq-icon');
+
+            // Close all other FAQs
+            allAnswers.forEach(a => {
+                if (a !== answer) a.classList.remove('active');
+            });
+            allIcons.forEach(i => {
+                if (i !== icon) i.classList.remove('rotate');
+            });
+
+            // Toggle current FAQ
+            answer.classList.toggle('active');
+            icon.classList.toggle('rotate');
+        }
+
+        // Smooth hover effect for buttons
+        document.addEventListener('mousemove', function(e) {
+            document.querySelectorAll('.btn-hover').forEach(btn => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                btn.style.setProperty('--mouse-x', x + 'px');
+                btn.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+    </script>
+</body>
+</html>
