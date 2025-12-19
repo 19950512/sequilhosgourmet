@@ -129,7 +129,7 @@ Para personalizar o site:
 
 Para pedidos e mais informações:
 - WhatsApp: (clique no botão flutuante do site)
-- Site: [emsequilhosgourmet.com.br](https://www.emsequilhosgourmet.com.br)
+- Site: [sequilhosgourmet.com.br](https://www.sequilhosgourmet.com.br)
 
 ## 📄 Licença
 
