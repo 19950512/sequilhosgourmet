@@ -49,7 +49,25 @@
             }
         }
     </script>
-    <script defer src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                var el = document.createElement('div');
+                el.className = 'hidden';
+                el.style.position = 'absolute';
+                el.style.left = '-9999px';
+                document.body.appendChild(el);
+                requestAnimationFrame(function() {
+                    var applied = window.getComputedStyle(el).display === 'none';
+                    console.log('Tailwind loaded:', applied);
+                    document.body.removeChild(el);
+                });
+            } catch (e) {
+                console.log('Tailwind detection failed', e);
+            }
+        });
+    </script>
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preload" as="image" href="sequilhos-gourmet-embalagem-premium.jpeg">
     <style>
