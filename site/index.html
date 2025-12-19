@@ -1040,12 +1040,26 @@
             }
         }
 
-        // Check for saved theme
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            document.getElementById('theme-icon-dark').classList.remove('hidden');
-            document.getElementById('theme-icon-light').classList.add('hidden');
-        }
+        // Apply stored theme preference; default to light to avoid unwanted dark mode
+        (function initializeTheme() {
+            const html = document.documentElement;
+            const darkIcon = document.getElementById('theme-icon-dark');
+            const lightIcon = document.getElementById('theme-icon-light');
+            const storedTheme = localStorage.getItem('theme');
+
+            if (storedTheme === 'dark') {
+                html.classList.add('dark');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            } else {
+                html.classList.remove('dark');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+                if (storedTheme === null) {
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+        })();
 
         // Lightbox functions
         let currentImageIndex = 0;
