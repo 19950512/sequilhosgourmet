@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@variant dark (.dark &);
+
+@theme {
+  /* Brand colors */
+  --color-brand-light: #F8E8EE;
+  --color-brand: #E5B8C8;
+  --color-brand-dark: #A45D7D;
+  --color-brand-accent: #7D4C5E;
+  
+  /* Rose colors */
+  --color-rose-50: #fff1f2;
+  --color-rose-100: #ffe4e6;
+  --color-rose-200: #fecdd3;
+  --color-rose-300: #fda4af;
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  
+  /* Fonts */
+  --font-family-serif: 'Cormorant Garamond', serif;
+  --font-family-sans: 'Montserrat', sans-serif;
+}
+
+/* Custom site styles can go below */
